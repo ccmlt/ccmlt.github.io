@@ -1,1 +1,327 @@
-hello world
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://ccm-projektai.mozello.lt/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <title>ccm projektai - Pradžia</title>
+
+
+
+
+
+
+
+        
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+
+        <link href="./ccm projektai - Pradžia_files/css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="./ccm projektai - Pradžia_files/layout-shared.css" type="text/css">
+        <link rel="stylesheet" href="./ccm projektai - Pradžia_files/layout.css" type="text/css">
+        <link rel="stylesheet" href="./ccm projektai - Pradžia_files/editable.css" type="text/css">
+
+        <link href="http://ccm-projektai.mozello.lt/favicon.png?0" rel="shortcut icon">
+<link href="http://ccm-projektai.mozello.lt/favicon.png?0" rel="apple-touch-icon">        
+            <link rel="stylesheet" href="./ccm projektai - Pradžia_files/jquery.fancybox.min.css" type="text/css">
+                <script src="./ccm projektai - Pradžia_files/jquery.min.js.download"></script>
+            <script src="./ccm projektai - Pradžia_files/jquery.fancybox.min.js.download"></script>
+            <script src="./ccm projektai - Pradžia_files/jquery.bannerplay.js.download"></script>
+            <script src="./ccm projektai - Pradžia_files/jquery.responsivevideos.js.download"></script>
+            <script src="./ccm projektai - Pradžia_files/designfx.js.download"></script>
+            <script src="./ccm projektai - Pradžia_files/mozlive.js.download"></script>
+            <script>var FRONTEND_CDN = 'https://dss4hwpyv4qfp.cloudfront.net';</script>
+
+
+
+        <style class="customizer">
+                                                                            #title .mz_wysiwyg { color :  #ffffff  }
+                                                                                                                            #menu > ul > li > a, #menu > ul > li.selected > a, #menu > ul > li > a:hover { color :  #ffffff  }
+                                                                                                                            #bigbar-colorizer { background-color :  hsla(0, 0%, 0%, 0.1)  }
+                                                                                                                            .bigbar-h1 .mz_wysiwyg, .bigbar-h2 .mz_wysiwyg { color :  #ffffff  }
+                                                                            .bigbar-h1, .bigbar-h2, #top.inner #title { border-color :  #ffffff  }
+                                                                                                                            #languages li > a { color :  #ffffff  }
+                                                                                                                            #languages li.selected > a, #languages li > a:hover { background-color :  #00aeef  }
+                                                                                                                            #languages li.selected > a, #languages li > a:hover { color :  #ffffff  }
+                                                                                                                            a, .mz_editable a { color :  #00aeef  }
+                                                                                                                                                .moze-form .moze-formbutton, .moze-button, .moze-button-large, ul.moze-gallery li, #submenu li:hover > a, #submenu li.selected > a { background-color :  #00aeef  }
+                                                                            .moze-button-large.btn-alt-light { border-color :  #00aeef  }
+                                                                            .moze-button-large.btn-white, .moze-button.btn-alt, .moze-button-large.btn-alt { color :  #00aeef  }
+                                                                                                                                                .mz_editable h1, .mz_editable h1.moze-megatitle, .mz_editable h1 a { color :  #222222  }
+                                                                                                                            .mz_editable h2, .sidebox h2 { color :  #222222  }
+                                                                                                                            .mz_editable h3 { color :  #222222  }
+                                                                                                                            #bottom .mz_wysiwyg { color :  #ffffff  }
+                                                                                                                            #bottom a { color :  #ffffff  }
+                                                                                                                                                                                                                                                                                                                                                    </style>
+    <style class="customizer-fonts">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </style>
+
+    
+
+    
+
+
+        <script src="./ccm projektai - Pradžia_files/main.js.download"></script>
+
+
+        <script>
+
+            // enforce minimum banner height
+            function enforceMinimumHeight() {
+                var winH = $(window).height();
+                var minH = $('#bigbar-container').height();
+                if (minH > winH) {
+                    $('#belowfold').css('top', minH);
+                    return true;
+                }
+                return false;
+            }
+
+            // realign central overlay
+            function InitLayout() {
+                enforceMinimumHeight();
+                var setPaddingTop = Math.max($("#header").outerHeight(), 40);
+                $('#bigbar-overlay').css("padding-top", setPaddingTop);
+            }
+
+            // sexy scrolling
+            var isScrolling = false;
+            function RecalcTop(isScrollEvent) {
+                // prevent stacking
+                if (isScrolling) {
+                    return false;
+                }
+                // do nothing on inner pages
+                if ($('#bigbar').hasClass('inner')) {
+                    return false;
+                }
+                // inputs
+                var scrollTop = $(document).scrollTop();
+                var scrollPx = scrollTop * 7;
+                var winH = $(window).height();
+                var docH = $(document).height();
+                var maxScroll = Math.max(0, winH - $('#bigbar-centerpiece').height() - $("#header").outerHeight());  // how much we can shrink?
+                scrollPx = Math.min(scrollPx, maxScroll);
+
+                // if there is not enough space for the shrink
+                var delta = scrollPx - parseInt($('#top').css('bottom'));
+                if (isScrollEvent && (delta > 0) && ((docH - winH - scrollTop) < delta)) {
+                    return false;
+                }
+
+                // do scrolling processing
+                try {
+                    isScrolling = true;
+                    if (scrollPx > 0) {
+                        $('#belowfold').css('top', winH - scrollPx);
+                        $('#top').css('bottom', scrollPx);
+                        $('#bigbar-down').addClass('animate-fade-out');
+                    } else {
+                        $('#belowfold').css('top', '100%');
+                        $('#top').css('bottom', 0);
+                        $('#bigbar-down').removeClass('animate-fade-out');
+                    }
+                    //enforceMinimumHeight();
+                }
+                finally {
+                    isScrolling = false;
+                }
+
+
+            }
+
+            $(document).ready(function () {
+
+                //// Layout initialization
+                // Resize on window size
+                $(window).resize(function () {
+                    InitLayout();
+                });
+                // Resize on key up
+                $("#bigbar").keyup(function () {
+                    InitLayout();
+                });
+                // Resize on load
+                $(window).load(function () {
+                    InitLayout();
+                });
+                // Resize immediately
+                InitLayout();
+
+                //// Sexy scrolling
+                if (window.screen.width > 480 && window.screen.height > 480) {
+                    // Resize on window size
+                    $(window).resize(function () {
+                        RecalcTop(false);
+                    });
+                    // Accelerate content scroll in
+                    $(window).scroll(function () {
+                        RecalcTop(true);
+                    })
+                }
+
+            });
+        </script>
+
+    <style id="fixed-menu-colors">@media screen and (min-width:751px) and (min-height:501px) {#top.sticky:not(.legacy-sticky-menu), #top.sticky.legacy-sticky-menu #menu { background-color: #222222}}</style></head>
+
+    <body class="design-boxed gallery-max-3 transparent-header " lang="lt">
+
+        
+                    <div id="bigbar" class="is_behind">
+                <div class="mz_component mz_banner">            <div class="moze-banner slide" style="background-image: url(&quot;https://site-1074438.mozfiles.com/files/1074438/banners/26206578/2a.jpg?1498242&quot;); background-position: 49% 72%; display: block;" data-pid="1498242"></div>
+    
+
+<a class="moze-banner-slide-left" href="javascript:void(0);" rel="nofollow" style="display: none;"></a>
+<a class="moze-banner-slide-right" href="javascript:void(0);" rel="nofollow" style="display: none;"></a>
+
+</div>
+                <div id="bigbar-colorizer"></div>
+            </div>
+            <div id="top" class="over-bigbar frontpage menu-wrapped" style="bottom: 0px;">
+                <div id="header">
+                    <div id="languages">
+                        
+                    </div>
+                    <div id="title">
+                        <a href="http://ccm-projektai.mozello.lt/"><div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor">
+                    <span class="moze-huge">Ccm LT projektai</span>
+            </div>
+
+</div></a>
+                    </div>
+                </div>
+                <div id="bigbar-container">
+                    <div id="bigbar-overlay" style="padding-top: 96px;">
+                        <div id="bigbar-centerpiece">
+                            <div class="bigbar-h1"><div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor">
+                    Čia Jūsų nauji namai
+            </div>
+
+</div></div>
+                            <div class="bigbar-h2"><div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor">
+            </div>
+
+</div></div>
+                            
+                            <div class="mz_component mz_menu" id="menu">
+            <ul>
+                <li class="selected"><a href="http://ccm-projektai.mozello.lt/">Pradžia</a>
+                                    </li>
+                        <li><a href="http://ccm-projektai.mozello.lt/vykdomi-projektai/">Vykdomi projektai</a>
+                                    </li>
+                        <li><a href="http://ccm-projektai.mozello.lt/projektai/">Įvykdyti projektai</a>
+                                    </li>
+                        <li><a href="http://ccm-projektai.mozello.lt/apie-mus/">Apie mus</a>
+                                    </li>
+                        <li><a href="http://ccm-projektai.mozello.lt/kontaktai/">Kontaktai</a>
+                                </li></ul>
+            
+</div>
+                            <a id="bigbar-down" href="http://ccm-projektai.mozello.lt/#belowfold" class="">&nbsp;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <div id="belowfold" style="top: 100%;">
+
+            <div id="wrap">
+                                
+
+
+        
+            
+    <div class="mz_component mz_grid" data-cid="26206561" data-pid="6113169">
+
+
+            <div class="section section-customizable" data-rowid="5432251">
+            <div class="container">
+                <div class="gridrow">
+                                            <div class="column-6-12" data-cellid="7294390">
+                            <div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor">
+                    <h2 class="moze-center">Dvibučiai namai Kairėnuose</h2>
+            </div>
+
+</div>                        </div>
+                                            <div class="column-6-12" data-cellid="7294391">
+                            <div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor">
+                    <h2>Dešinės pusės blokas</h2><p>Čia galite įrašyti tekstą, kuris bus matomas dešinėje pusėje. Toks pat turinio blokas matomas ir kairėje.</p>
+            </div>
+
+</div>                        </div>
+                                    </div>
+            </div>
+        </div>
+            <div class="section section-customizable" data-rowid="5432257">
+            <div class="container">
+                <div class="gridrow">
+                                            <div class="column-6-12" data-cellid="7294398">
+                            <div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor">
+                    <h2>Kairės pusės blokas</h2><p>Čia galite įrašyti tekstą, kuris bus matomas kairėje pusėje. Toks pat turinio blokas matomas ir dešinėje.</p>
+            </div>
+
+</div>                        </div>
+                                            <div class="column-6-12" data-cellid="7294399">
+                            <div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor">
+                    <h2>Dešinės pusės blokas</h2><p>Čia galite įrašyti tekstą, kuris bus matomas dešinėje pusėje. Toks pat turinio blokas matomas ir kairėje.</p>
+            </div>
+
+</div>                        </div>
+                                    </div>
+            </div>
+        </div>
+    
+    </div>
+
+    
+    
+
+
+
+            </div>
+
+            <div id="bottom">
+    <div id="footer">
+        <div id="foottext">
+            <div class="mz_component mz_wysiwyg mz_editable">    <div class="moze-wysiwyg-editor">
+                    Sukurta su <a href="https://www.mozello.lt/" target="_blank" rel="nofollow">„Mozello“</a> - lengviausia svetainių kūrimo priemone.
+            </div>
+
+</div>
+        </div>
+        <div id="social">
+            
+        </div>
+    </div>
+</div>
+        </div>
+
+        
+<!-- This is a secret trap for spam robots, do not go to this link -->
+<a class="mz_notforhumans" href="http://ccm-projektai.mozello.lt/meduspods/">&nbsp;.</a>
+
+    
+
+
+    <script>
+        $(document).ready(function(){
+            $(".mz_wysiwyg").responsiveVideos();
+        });
+    </script>
+
+
+        <link href="./ccm projektai - Pradžia_files/jquery.cookienotice.css" rel="stylesheet" type="text/css">
+        <script src="./ccm projektai - Pradžia_files/jquery.cookienotice.js.download"></script>
+        <script>
+            $(document).ready(function() { 
+                $("body").cookieNotice({
+                    theme: "light",
+                    policyLink: "",
+                    language: "lt",
+                }); 
+            });
+        </script>
+        
+
+
+    
+
+</body></html>
